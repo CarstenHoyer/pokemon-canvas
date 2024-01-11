@@ -73,13 +73,13 @@ export const Scene = () => {
     <>
       <OrbitControls ref={controlsRef} />
       {images.length
-        ? [...Array(10).keys()].map((x, ix) => {
-            return [...Array(10).keys()].map((y, iy) => {
+        ? [...Array(10).keys()].map((x) => {
+            return [...Array(10).keys()].map((y) => {
               return (
                 <Image
-                  key={ix * iy}
-                  img={images[ix + ix * iy]}
-                  position={[4 * ix - 20, 4 * iy - 20, 0]}
+                  key={x * y}
+                  img={images[x + x * y]}
+                  position={[4 * x - 20, 4 * y - 20, 0]}
                 />
               );
             });
