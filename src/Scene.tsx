@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { MOUSE, TextureLoader } from "three";
+import { MOUSE, TOUCH, TextureLoader } from "three";
 
 // async function getRandomPokemons(n = 10) {
 //   const totalPokemons = 898; // Total number of Pokémon as of the latest generation
@@ -66,6 +66,10 @@ export const Scene = () => {
       LEFT: MOUSE.PAN,
       MIDDLE: MOUSE.DOLLY,
       RIGHT: MOUSE.ROTATE,
+    };
+    controlsRef.current.touches = {
+      ONE: TOUCH.PAN,
+      TWO: TOUCH.DOLLY_ROTATE,
     };
   }, []);
 
