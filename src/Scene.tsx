@@ -1,7 +1,8 @@
 import { OrbitControls } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { MOUSE, TOUCH, TextureLoader } from "three";
+import { Camera, MOUSE, TOUCH, TextureLoader } from "three";
+import CameraNoisePanner from "./CameraNoisePanner";
 
 // async function getRandomPokemons(n = 10) {
 //   const totalPokemons = 898; // Total number of Pokémon as of the latest generation
@@ -42,7 +43,6 @@ function Image({
 }
 
 export const Scene = () => {
-  const controlsRef = useRef<any>();
   const [images, setImages] = useState<string[]>([]);
   useEffect(() => {
     (async () => {
@@ -61,21 +61,9 @@ export const Scene = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    controlsRef.current.mouseButtons = {
-      LEFT: MOUSE.PAN,
-      MIDDLE: MOUSE.DOLLY,
-      RIGHT: MOUSE.ROTATE,
-    };
-    controlsRef.current.touches = {
-      ONE: TOUCH.PAN,
-      TWO: TOUCH.DOLLY_ROTATE,
-    };
-  }, []);
-
   return (
     <>
-      <OrbitControls ref={controlsRef} />
+      <CameraNoisePanner intensity={0.5} speed={0.001} />
       {images.length
         ? [...Array(10).keys()].map((x) => {
             return [...Array(10).keys()].map((y) => {
